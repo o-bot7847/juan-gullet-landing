@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- favicon inline (play em menta sobre teal-black) — trocar por logo do Juan se ele tiver -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23080C0B'/%3E%3Cpath d='M13 10l9 6-9 6z' fill='%23D4FCF2'/%3E%3C/svg%3E">
+<title>Juan Gullet — Diretor & Videomaker</title>
+
+<!-- ===== SEO / preview de compartilhamento ===== -->
+<!-- PLACEHOLDER: trocar https://SEUDOMINIO.com.br/ pelo domínio real quando a página for publicada -->
+<meta name="description" content="Juan Gullet — diretor e videomaker em Itajubá. Faz filmes curtos com cara de cinema para marcas: campanhas, institucionais, videoclipes e conteúdo para redes sociais.">
+<link rel="canonical" href="https://SEUDOMINIO.com.br/">
+<!-- Open Graph (WhatsApp, Instagram, Facebook, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Juan Gullet — Diretor & Videomaker">
+<meta property="og:description" content="Filmes curtos com cara de cinema para marcas — campanhas, institucionais, videoclipes e conteúdo para redes. Itajubá & região.">
+<!-- PLACEHOLDER: og:image precisa ser uma imagem 1200x630px (um frame do showreel) -->
+<meta property="og:image" content="https://SEUDOMINIO.com.br/og-image.jpg">
+<meta property="og:url" content="https://SEUDOMINIO.com.br/">
+<meta property="og:locale" content="pt_BR">
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Juan Gullet — Diretor & Videomaker">
+<meta name="twitter:description" content="Filmes curtos com cara de cinema para marcas — campanhas, institucionais, videoclipes e conteúdo para redes. Itajubá & região.">
+<!-- PLACEHOLDER: twitter:image precisa ser 1200x630px (um frame do showreel) -->
+<meta name="twitter:image" content="https://SEUDOMINIO.com.br/og-image.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,700;0,800;1,400;1,500&family=Sacramento&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Cinematic Noir — do DESIGN.md do Stitch */
+  --teal-black:#080C0B;
+  --surface:#101413;
+  --surface-low:#181c1b;
+  --surface-container:#1c201f;
+  --deep-gray:#1A1A1A;
+  --mint:#D4FCF2;          /* a única "luz" da tela */
+  --on-surface:#e0e3e1;
+  --on-variant:#c1c8c5;
+  --muted:#8b9290;
+  --outline:#414846;
+  --gutter:16px;
+  --margin:80px;
+  --content-pad:120px;     /* respiro lateral das seções de display (título/cards/showreel) — mais margem, igual à referência */
+  --section-gap:160px;
+  --max:1440px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--teal-black);
+  color:var(--on-surface);
+  font-family:'Karla',system-ui,sans-serif;
+  font-size:18px;line-height:1.6;font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--margin)}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mint)}
+.muted{color:var(--muted)}
+
+/* ---------- REVEAL (fade-in ao rolar — no site inteiro, estilo portal) ---------- */
+.reveal{opacity:0;transform:translateY(36px);
+  transition:opacity 1.5s cubic-bezier(.16,1,.3,1),transform 1.5s cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.18s}
+.reveal.d2{transition-delay:.36s}
+.reveal.d3{transition-delay:.54s}
+.reveal.d4{transition-delay:.72s}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1 !important;transform:none !important;transition:none !important}
+}
+
+/* ---------- NAV ---------- */
+header{position:absolute;top:0;left:0;right:0;z-index:100}   /* NÃO fixo: rola junto com a página e some ao descer */
+.nav{max-width:var(--max);margin:0 auto;padding:22px var(--margin);display:flex;align-items:center;justify-content:space-between}
+.brand{font-weight:800;letter-spacing:.16em;font-size:16px;text-transform:uppercase}
+.menu{display:flex;gap:40px;align-items:center}
+.menu a{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--on-variant);position:relative;padding:6px 0;transition:color .25s}
+.menu a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--mint);transition:width .3s}
+.menu a:hover{color:var(--mint)}
+.menu a:hover::after{width:100%}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:14px 24px;border:1px solid var(--mint);transition:.25s;cursor:pointer;background:transparent}
+.btn.solid{background:var(--mint);color:var(--teal-black)}
+.btn.solid:hover{background:#eafff9;box-shadow:0 0 30px rgba(212,252,242,.25)}
+.btn.ghost{color:var(--mint)}
+.btn.ghost:hover{background:var(--mint);color:var(--teal-black)}
+.burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0}
+.burger span{width:26px;height:2px;background:var(--on-surface);transition:.3s}
+
+/* ---------- HERO ---------- */
+/* Efeito Casa Amarela: fundo TRAVADO (parallax de revelação) + fade-in de entrada */
+.hero{position:relative;height:100vh;min-height:640px;display:flex;align-items:flex-end;justify-content:flex-start;overflow:hidden;text-align:left;
+  background-color:#080C0B;
+  opacity:0;transition:opacity 1.1s ease}
+.hero.loaded{opacity:1}
+/* camada de fundo PINADA (parallax de revelação, estilo Casa Amarela) + zoom lento Ken Burns via transform (suave/GPU) */
+.hero-bg{position:fixed;inset:0;z-index:0;background:center/cover no-repeat;transform-origin:center;
+  animation:heroKenburns 28s ease-in-out infinite alternate;will-change:transform}
+@keyframes heroKenburns{from{transform:scale(1.03)}to{transform:scale(1.16)}}
+/* tudo após o hero numa camada opaca FULL-WIDTH p/ cobrir o fundo pinado (as seções .wrap não chegam nas bordas em telas largas) */
+.page{position:relative;z-index:1;background:var(--teal-black)}
+/* PELÍCULA: escurecimento + leve tom teal + vinheta (ar cinematográfico, sutil) */
+.hero::after{content:"";position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(125% 125% at 50% 42%, rgba(8,20,18,.15) 0%, rgba(8,12,11,.72) 100%),
+    linear-gradient(180deg, rgba(8,12,11,.5) 0%, rgba(8,12,11,.3) 45%, rgba(8,12,11,.9) 100%),
+    linear-gradient(0deg, rgba(32,64,58,.12), rgba(32,64,58,.12))}
+/* GRÃO de filme — a "película" que dá o ar elegante */
+.grain{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.10;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:150px 150px}
+.hero-inner{position:relative;z-index:3;padding:0 var(--margin) 88px;max-width:720px}
+.hero .eyebrow{margin-bottom:16px;color:var(--mint)}
+.hero-title{font-weight:800;font-size:clamp(40px,5.8vw,76px);line-height:.98;letter-spacing:-.03em;color:#fff}   /* a estrela do hero, no padrão das outras headlines */
+.hero-sub{margin-top:22px;max-width:460px;color:var(--on-variant);font-size:clamp(16px,1.4vw,19px)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px;margin-top:34px}
+/* telas baixas (laptops ~768px): encolhe o hero pra o conteúdo limpar o nav sem sobrepor */
+@media(max-height:780px){
+  .hero-title{font-size:clamp(32px,4.8vw,54px)}
+  .hero-inner{padding-bottom:60px}
+  .hero-sub{margin-top:16px}
+  .hero-cta{margin-top:24px}
+}
+.scroll-ind{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll-ind .line{width:1px;height:46px;background:linear-gradient(var(--mint),transparent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ---------- SEÇÃO 2 · OBRA CINEMATOGRÁFICA (título gigante à esq. + FOCO/PAPEL no canto inf. dir.) ---------- */
+.cine{padding:var(--section-gap) var(--content-pad)}
+.cine .eyebrow{margin-bottom:30px}
+.cine-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:end}
+.cine-grid h2{font-weight:800;font-size:clamp(36px,5vw,74px);line-height:.98;letter-spacing:-.03em;color:var(--mint)}
+.cine-side{max-width:440px;padding-bottom:8px}
+.cine-side>p{color:var(--on-surface);font-size:20px;font-weight:500;margin-bottom:34px}
+.cine-cols{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.cine-cols .k{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mint);margin-bottom:10px}
+.cine-cols p{color:var(--on-variant);font-size:15px;line-height:1.5}
+
+/* ---------- PLAY BUTTON (igual à Imagem #2) ---------- */
+.play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:84px;height:84px;border:2px solid rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:3;transition:.3s;backdrop-filter:blur(2px)}
+.play svg{width:26px;height:26px;margin-left:4px;fill:#fff;transition:.3s}
+.cell:hover .play,.player:hover .play{background:var(--mint);border-color:var(--mint);box-shadow:0 0 40px rgba(212,252,242,.45)}
+.cell:hover .play svg,.player:hover .play svg{fill:var(--teal-black)}
+
+/* ---------- GRID DE TRABALHOS (colado, 3 col — igual à Imagem #2) ---------- */
+.works{padding:0 0 var(--section-gap)}
+.works .bar{display:flex;justify-content:space-between;align-items:baseline;padding:0 var(--margin);margin-bottom:26px}
+.grid-videos{display:grid;grid-template-columns:repeat(3,1fr);gap:0}          /* colados */
+.cell{position:relative;aspect-ratio:16/10;overflow:hidden;cursor:pointer;background:#000}
+.cell img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) brightness(.97);transition:.5s}   /* colorido = cor, vida (Imagem #7) */
+.cell:hover img{filter:saturate(1.15) brightness(1.08);transform:scale(1.05)}
+.cell .tag{position:absolute;left:16px;bottom:14px;z-index:3;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(8px);transition:.35s;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.cell:hover .tag{opacity:1;transform:translateY(0)}
+
+/* ---------- SEÇÃO 5 · CLIENTES (grid de logos + 3 boxes) ---------- */
+.clients{padding:var(--section-gap) var(--content-pad)}
+.clients h2{font-weight:800;font-size:clamp(28px,4vw,54px);line-height:1;letter-spacing:-.02em;max-width:760px;margin:16px 0 44px}
+/* painel CREME que quebra o preto da tela (pedido do Flávio) — logos dos clientes dentro */
+.logos{background:#f2ede1;border-radius:18px;padding:56px 48px;display:grid;grid-template-columns:repeat(4,1fr);gap:46px 32px;align-items:center}
+/* PLACEHOLDER: cada .logo vira o logotipo real de um cliente do Juan (trocar wordmark por <img>). */
+.logo{min-height:60px;display:flex;align-items:center;justify-content:center;color:#20211f;font-weight:800;letter-spacing:.03em;font-size:18px;text-transform:uppercase;opacity:.48;transition:opacity .3s}
+.logo:hover{opacity:.85}
+
+/* ---------- SEÇÃO 6 · FAIXA DE CITAÇÃO (efeito portal: foto FIXA revelada + frase + assinatura) ---------- */
+.quoteband{position:relative;min-height:72vh;display:flex;align-items:center;overflow:hidden;   /* abertura menor = faixa letterbox igual ao portal */
+  background-color:var(--teal-black);background-position:center;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}
+/* PELÍCULA (como no hero) + escurecimento à direita pro texto ler fora do rosto */
+.quoteband::after{content:"";position:absolute;inset:0;z-index:1;
+  background:
+    linear-gradient(90deg, rgba(8,12,11,.28) 0%, rgba(8,12,11,.16) 30%, rgba(8,12,11,.72) 60%, rgba(8,12,11,.93) 100%),
+    radial-gradient(120% 120% at 45% 45%, rgba(8,20,18,.1) 0%, rgba(8,12,11,.5) 100%),
+    linear-gradient(0deg, rgba(32,64,58,.1), rgba(32,64,58,.1))}
+.quoteband .wrap{width:100%}
+.quoteband .qb{position:relative;z-index:3;margin-left:auto;max-width:410px}   /* menor e à direita, fora do rosto */
+.quoteband .qmark{font-family:Georgia,serif;font-size:72px;line-height:.4;color:var(--mint);margin-bottom:8px;display:block}
+.quoteband blockquote{font-style:italic;font-weight:500;font-size:clamp(20px,2.3vw,31px);line-height:1.22;color:#fff}
+.quoteband .author{margin-top:22px;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.quoteband .sign{font-family:'Sacramento',cursive;font-size:54px;line-height:.8;color:var(--mint);margin-top:6px}
+
+/* ---------- SEÇÃO 7 · SHOWREEL (título à esq. + player à dir. + faixa 01–04) ---------- */
+.reel{padding:var(--section-gap) var(--content-pad)}
+.reel-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center}   /* vídeo um pouco menor que antes */
+.reel-left h2{font-weight:800;font-size:clamp(34px,4.4vw,64px);line-height:.98;letter-spacing:-.03em;margin-top:14px}
+.reel-right{width:100%}
+.reel-player{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;border:1px solid var(--outline);border-radius:8px}
+.reel-player video{width:100%;height:100%;object-fit:cover;display:block}
+/* faixa 01–04 fica SÓ embaixo do vídeo (dentro de .reel-right), não na tela inteira */
+.reel-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:22px;border-top:1px solid var(--outline);padding-top:18px}
+.reel-steps div{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.reel-steps div span{color:var(--mint);margin-right:8px}
+
+/* ---------- SOBRE ---------- */
+.about{padding:var(--section-gap) var(--content-pad)}
+.about .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:center}
+.about .portrait{position:relative;aspect-ratio:4/5;overflow:hidden}
+.about .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.05)}
+.about h3{font-weight:800;font-size:clamp(30px,4.6vw,60px);line-height:1;letter-spacing:-.02em;text-transform:uppercase;margin:18px 0 26px}
+.about p{color:var(--on-variant);margin-bottom:20px}
+.about .stats{display:flex;gap:48px;margin-top:36px;flex-wrap:wrap}
+.about .stats .n{font-size:40px;font-weight:800;color:var(--mint);letter-spacing:-.02em;line-height:1}
+.about .stats .l{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+/* ---------- CONTATO ---------- */
+.contact{padding:var(--section-gap) var(--content-pad);border-top:1px solid var(--outline)}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.contact h2{font-weight:800;font-size:clamp(34px,5vw,72px);line-height:.98;letter-spacing:-.03em;text-transform:uppercase}
+.contact .lead{margin-top:22px;color:var(--on-variant);max-width:420px}
+.contact .wpp{margin-top:34px}
+.form-field{position:relative;margin-bottom:34px}
+.form-field label{display:block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.form-field input,.form-field textarea{width:100%;background:transparent;border:0;border-bottom:1px solid var(--outline);color:var(--on-surface);font-family:inherit;font-size:18px;padding:8px 0;transition:border-color .3s}
+.form-field textarea{resize:vertical;min-height:90px}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-bottom-color:var(--mint)}
+.form button{width:100%;justify-content:center;margin-top:8px}
+
+/* ---------- FOOTER ---------- */
+footer{border-top:1px solid var(--outline);padding:46px var(--margin);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+footer .brand{font-size:14px}
+footer .social{display:flex;gap:26px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+footer .social a:hover{color:var(--mint)}
+footer .cr{font-size:12px;color:var(--muted)}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox{position:fixed;inset:0;z-index:200;background:rgba(4,6,6,.94);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lightbox .box{width:min(1100px,92vw);aspect-ratio:16/9;background:#000;position:relative}
+.lightbox video{width:100%;height:100%;object-fit:contain;background:#000}
+.lightbox .close{position:absolute;top:-46px;right:0;color:#fff;font-size:28px;cursor:pointer;background:none;border:0;line-height:1}
+
+/* ---------- RESPONSIVO ---------- */
+@media(max-width:900px){
+  :root{--margin:24px;--content-pad:24px;--section-gap:96px}
+  .quoteband{background-attachment:scroll}   /* fixed é instável no mobile — degrada pra estático */
+  .hero-bg{position:absolute}                /* no mobile a camada fica presa ao hero (sem parallax), zoom continua */
+  .menu{position:fixed;inset:0 0 0 auto;width:74%;max-width:340px;background:var(--surface);flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:.4s;padding:40px}
+  .menu.open{transform:translateX(0)}
+  .burger{display:flex;z-index:110}
+  .menu .btn.solid{margin-top:6px}          /* "Orçamento" aparece dentro do drawer, como CTA abaixo dos links */
+  .about .grid,.contact .grid{grid-template-columns:1fr;gap:40px}
+  .cine-grid{grid-template-columns:1fr;gap:34px;align-items:start}
+  .cine-side{max-width:100%}
+  .cine-cols{grid-template-columns:1fr}          /* FOCO usa a largura toda no mobile (sem o vazio do PAPEL) */
+  .scroll-ind{display:none}                       /* seta "Role" atrapalha os botões do hero no mobile */
+  .logos{grid-template-columns:repeat(2,1fr)}
+  .reel-grid{grid-template-columns:1fr;gap:28px}
+  .reel-steps{grid-template-columns:repeat(2,1fr);gap:16px}
+  .grid-videos{grid-template-columns:repeat(2,1fr)}
+  .works .bar{padding:0 var(--margin)}
+  .quoteband .qb{margin:0}
+}
+@media(max-width:560px){
+  .grid-videos{grid-template-columns:1fr}
+  .logos{grid-template-columns:repeat(2,1fr)}     /* 2 col no celular: seção não fica alta demais */
+  .play{width:64px;height:64px}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header id="hdr">
+  <nav class="nav wrap" style="padding-left:0;padding-right:0">
+    <a href="#" class="brand">Juan&nbsp;Gullet</a>
+    <div class="menu" id="menu">
+      <a href="#trabalhos">Trabalhos</a>
+      <a href="#showreel">Showreel</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+      <a href="#contato" class="btn solid">Orçamento</a>
+    </div>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<!-- ============ HERO ============ -->
+<!-- Fundo fixo (parallax de revelação, estilo Casa Amarela) + película (grão). Troque hero.jpg pelo frame do showreel do Juan depois. -->
+<section class="hero">
+  <div class="hero-bg" style="background-image:url('hero.jpg')"></div>
+  <div class="grain"></div>
+  <div class="hero-inner">
+    <div class="eyebrow">Vídeo profissional · Itajubá &amp; região</div>
+    <!-- PLACEHOLDER: trocar pela copy de posicionamento real do Juan -->
+    <h1 class="hero-title">Filmes curtos que fazem sua marca parecer cinema.</h1>
+    <p class="hero-sub">Direção, câmera e edição autorais, do conceito à cor final — pra marcas da região que querem aparecer do tamanho que são.</p>
+    <div class="hero-cta">
+      <a href="#showreel" class="btn solid">Ver o showreel</a>
+      <a href="#contato" class="btn ghost">Falar com o Juan</a>
+    </div>
+  </div>
+  <div class="scroll-ind"><span>Role</span><span class="line"></span></div>
+</section>
+
+<!-- camada opaca que cobre o fundo pinado do hero em todo o resto da página -->
+<div class="page">
+
+<!-- ============ SEÇÃO 2 · OBRA CINEMATOGRÁFICA (título gigante + FOCO/PAPEL) ============ -->
+<section class="cine wrap">
+  <div class="eyebrow reveal">Portfólio de imagens em movimento</div>
+  <div class="cine-grid">
+    <h2 class="reveal">Obra cinematográfica, feita pra prender a atenção de verdade.</h2>
+    <div class="cine-side reveal d2">
+      <p>Eu conduzo a narrativa do primeiro esboço até a exportação final: planos certos, ritmo que segura, câmera perto da cena e um visual que já entra funcionando — em qualquer tela.</p>
+      <div class="cine-cols">
+        <div><div class="k">Foco</div><p>Campanhas, videoclipes, retratos e conteúdo pensado pra redes sociais.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GRID DE TRABALHOS (colorido — Imagem #7) ============ -->
+<section class="works" id="trabalhos">
+  <div class="bar reveal">
+    <div class="eyebrow">Seleção de trabalhos</div>
+    <div class="muted" style="font-size:13px">2023 — 2026</div>
+  </div>
+  <!-- PLACEHOLDER: cada célula vira um vídeo do Juan (thumb colorido + play → abre no lightbox) -->
+  <div class="grid-videos">
+    <div class="cell reveal" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/wa/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Grife · Moda</span></div>
+    <div class="cell reveal d1" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/wb/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Institucional</span></div>
+    <div class="cell reveal d2" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/wc/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Produto</span></div>
+    <div class="cell reveal" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/wd/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Campanha</span></div>
+    <div class="cell reveal d1" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/we/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Loja · Varejo</span></div>
+    <div class="cell reveal d2" data-video="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"><img src="https://picsum.photos/seed/wf/700/440"><div class="play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div><span class="tag">Marca</span></div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 5 · CLIENTES (grid de logos + 3 boxes) ============ -->
+<section class="clients wrap" id="clientes">
+  <div class="eyebrow reveal">Marcas &amp; parceiros</div>
+  <h2 class="reveal">Marcas e parceiros com quem já rodei.</h2>
+  <!-- PLACEHOLDER: troque cada wordmark por <img src="logo-cliente.svg"> dos clientes reais do Juan. -->
+  <div class="logos reveal d1">
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+    <div class="logo">Cliente</div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 6 · FAIXA DE CITAÇÃO (efeito portal — foto fixa revelada) ============ -->
+<!-- PLACEHOLDER: quote-bg.jpg e a frase/assinatura serão trocadas por foto e frase reais do Juan. -->
+<section class="quoteband" style="background-image:url('quote-bg.jpg')">
+  <div class="grain"></div>
+  <div class="wrap">
+    <div class="qb reveal">
+      <span class="qmark">&ldquo;</span>
+      <blockquote>Toda marca carrega um filme por dentro. O meu trabalho é só revelar.</blockquote>
+      <div class="author">Filmmaker</div>
+      <div class="sign">Juan Gullet</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SEÇÃO 7 · SHOWREEL (título à esq. + player à dir. + faixa 01–04) ============ -->
+<section class="reel wrap" id="showreel">
+  <div class="reel-grid">
+    <div class="reel-left">
+      <div class="eyebrow reveal">Showreel</div>
+      <h2 class="reveal d1">A primeira impressão é decisiva.</h2>
+    </div>
+    <div class="reel-right reveal d2">
+      <!-- PLACEHOLDER: troque o src e o poster pelo showreel real do Juan. -->
+      <div class="reel-player">
+        <video controls preload="none" poster="https://picsum.photos/seed/reel/1280/720"
+          src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"></video>
+      </div>
+      <div class="reel-steps">
+        <div><span>01</span> Direção</div>
+        <div><span>02</span> Câmera</div>
+        <div><span>03</span> Edição</div>
+        <div><span>04</span> Cor</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section class="about wrap" id="sobre">
+  <div class="grid">
+    <div class="portrait reveal"><img src="https://picsum.photos/seed/juanport/800/1000?grayscale" alt="Juan Gullet"></div>
+    <div class="reveal d1">
+      <div class="eyebrow">Sobre</div>
+      <h3>A referência em<br>vídeo da região</h3>
+      <p>Juan Gullet virou nome quando as marcas de Itajubá perceberam que dava pra ter um vídeo com cara de cinema — sem sair da cidade. Hoje, grifes e as maiores lojas da região confiam a ele a forma como aparecem pro mundo.</p>
+      <p>O trabalho é autoral do início ao fim: ele pensa a história, dirige, capta e finaliza. Não entrega "um vídeo". Entrega um filme curto que carrega o nome da marca.</p>
+      <div class="stats">
+        <div><div class="n">+8</div><div class="l">anos de estrada</div></div>
+        <div><div class="n">+120</div><div class="l">projetos entregues</div></div>
+        <div><div class="n">Itajubá</div><div class="l">e região</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="contact wrap" id="contato">
+  <div class="grid">
+    <div class="reveal">
+      <h2>Vamos criar algo que valha a pena assistir.</h2>
+      <p class="lead">Conte um pouco sobre a sua marca e o que você imagina. Respondo pessoalmente.</p>
+      <div class="wpp">
+        <!-- WhatsApp Juan: +55 (35) 99154-8314 -->
+        <a class="btn ghost" href="https://wa.me/5535991548314?text=Oi%20Juan!%20Vi%20seu%20trabalho%20e%20quero%20um%20or%C3%A7amento." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <div style="margin-top:20px"><a href="mailto:juangullet@gmail.com" style="font-size:14px;letter-spacing:.06em;color:var(--muted)">juangullet@gmail.com</a></div>
+      </div>
+    </div>
+    <form class="form reveal d1" onsubmit="event.preventDefault();alert('Formulário de demonstração — o envio real (Cloudflare + Resend) entra na fase de publicação.');">
+      <div class="form-field"><label>Nome</label><input type="text" name="nome" required placeholder="Seu nome"></div>
+      <div class="form-field"><label>WhatsApp ou e-mail</label><input type="text" name="contato" required placeholder="Como te retorno"></div>
+      <div class="form-field"><label>Sobre o projeto</label><textarea name="mensagem" placeholder="Que marca é, e o que você imagina de vídeo"></textarea></div>
+      <button class="btn solid" type="submit">Enviar</button>
+    </form>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="brand" style="font-weight:800;letter-spacing:.16em;text-transform:uppercase">Juan Gullet</div>
+  <div class="social">
+    <a href="https://www.instagram.com/juangullet/" target="_blank" rel="noopener">Instagram</a>
+    <a href="mailto:juangullet@gmail.com">E-mail</a>
+    <a href="#contato">Contato</a>
+  </div>
+  <div class="cr">© 2026 Juan Gullet · Itajubá, MG</div>
+</footer>
+
+</div><!-- /.page -->
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lb">
+  <div class="box">
+    <button class="close" id="lbclose" aria-label="fechar">&times;</button>
+    <video id="lbvideo" controls></video>
+  </div>
+</div>
+
+<script>
+// hero fade-in de entrada (classe .loaded, igual Casa Amarela)
+const hero=document.querySelector('.hero');
+requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('loaded')));
+
+// REVEAL ao rolar — fade-in de todas as seções (IntersectionObserver, revela uma vez só)
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+},{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// mobile menu
+const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+burger.addEventListener('click',()=>menu.classList.toggle('open'));
+menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+
+// lightbox (grid de trabalhos)
+const lb=document.getElementById('lb'),lbv=document.getElementById('lbvideo');
+function openLB(src){lbv.src=src;lb.classList.add('open');lbv.play();}
+function closeLB(){lb.classList.remove('open');lbv.pause();lbv.removeAttribute('src');lbv.load();}
+document.querySelectorAll('[data-video]').forEach(el=>el.addEventListener('click',()=>openLB(el.dataset.video)));
+document.getElementById('lbclose').addEventListener('click',closeLB);
+lb.addEventListener('click',e=>{if(e.target===lb)closeLB();});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeLB();});
+</script>
+</body>
+</html>
