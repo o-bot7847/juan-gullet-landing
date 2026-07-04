@@ -99,10 +99,10 @@ header{position:absolute;top:0;left:0;right:0;z-index:100}   /* NÃO fixo: rola 
   background-color:#080C0B;
   opacity:0;transition:opacity 1.1s ease}
 .hero.loaded{opacity:1}
-/* camada de fundo PINADA (parallax de revelação, estilo Casa Amarela) + zoom lento Ken Burns via transform (suave/GPU) */
-.hero-bg{position:fixed;inset:0;z-index:0;background:center/cover no-repeat;transform-origin:center;
-  animation:heroKenburns 28s ease-in-out infinite alternate;will-change:transform}
-@keyframes heroKenburns{from{transform:scale(1.03)}to{transform:scale(1.16)}}
+/* camada de fundo PINADA (parallax de revelação, estilo Casa Amarela). Agora recebe o VÍDEO de bastidor (o próprio vídeo já tem movimento, então o Ken Burns foi removido desta camada). */
+.hero-bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+/* vídeo cobre a camada como background (object-fit:cover = igual background-size:cover). poster=hero.jpg é o fallback instantâneo. */
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;background:#080C0B}
 /* tudo após o hero numa camada opaca FULL-WIDTH p/ cobrir o fundo pinado (as seções .wrap não chegam nas bordas em telas largas) */
 .page{position:relative;z-index:1;background:var(--teal-black)}
 /* PELÍCULA: escurecimento + leve tom teal + vinheta (ar cinematográfico, sutil) */
@@ -280,7 +280,12 @@ footer .cr{font-size:12px;color:var(--muted)}
 <!-- ============ HERO ============ -->
 <!-- Fundo fixo (parallax de revelação, estilo Casa Amarela) + película (grão). Troque hero.jpg pelo frame do showreel do Juan depois. -->
 <section class="hero">
-  <div class="hero-bg" style="background-image:url('hero.jpg')"></div>
+  <!-- PLACEHOLDER: vídeo de bastidor (Coverr, livre de direitos) — trocar por clipe real do Juan quando ele mandar. poster="hero.jpg" é o fallback instantâneo/se o vídeo falhar. -->
+  <div class="hero-bg">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="hero.jpg">
+      <source src="hero-preview.mp4" type="video/mp4">
+    </video>
+  </div>
   <div class="grain"></div>
   <div class="hero-inner">
     <div class="eyebrow">Vídeo profissional · Itajubá &amp; região</div>
@@ -447,6 +452,10 @@ footer .cr{font-size:12px;color:var(--muted)}
 // hero fade-in de entrada (classe .loaded, igual Casa Amarela)
 const hero=document.querySelector('.hero');
 requestAnimationFrame(()=>requestAnimationFrame(()=>hero.classList.add('loaded')));
+
+// vídeo do hero: respeita prefers-reduced-motion (pausa → sem movimento, fica no poster/frame estático)
+const heroVideo=document.querySelector('.hero-video');
+if(heroVideo && matchMedia('(prefers-reduced-motion: reduce)').matches){heroVideo.removeAttribute('autoplay');heroVideo.pause();}
 
 // REVEAL ao rolar — fade-in de todas as seções (IntersectionObserver, revela uma vez só)
 const io=new IntersectionObserver((entries)=>{
